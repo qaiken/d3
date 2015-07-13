@@ -37,8 +37,6 @@ Some API's you could use, but are not limited to, include:
 - [ ] Make your charts interactive. Have it respond somehow to click and/or drag events
 - [ ] Create an option which allows you to live add or remove data
 
-TODO: Here's an example of a D3 Hackathon that one of our Fellows, Ben Pevsner made in a couple days (LINK TO HIS WORK)
-
 
 ### Extra content material:
 
