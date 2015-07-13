@@ -31,7 +31,7 @@ Some API's you could use, but are not limited to, include:
 - [Los Angeles Open Data](https://data.lacity.org/)
 - [The Uber API](https://developer.uber.com/)
 - [San Francisco Crimespotting API](http://sanfrancisco.crimespotting.org/api)
-- [Chuck Norris Jokes API](http://www.icndb.com/api/) Great for word clouds
+- [Chuck Norris Jokes API](https://www.apitools.com/apis/chuck-norris-jokes) Great for word clouds
 
 ## Extra Credit
 - [ ] Make your charts interactive. Have it respond somehow to click and/or drag events
