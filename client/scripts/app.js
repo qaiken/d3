@@ -21,9 +21,11 @@ var app;
     width = params.width - margin.left - margin.right;
     height = params.height - margin.top - margin.bottom;
 
-    yStackMax = d3.max(data, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
+    yStackMax = d3.max(data, function(layer) { return d3.max(layer, function(d) { return d.y; }); });
     //Y-Axis is rent amount, linear scaling
     //X-Axis is time, ordinal scaling
+
+    console.log('yStackMax',yStackMax);
 
     var dates = data[0].map(function(point){
       return point.x;
@@ -31,15 +33,11 @@ var app;
 
     var x = d3.scale.ordinal()
         .domain(dates)
-        .rangeRoundBands([0, width], .1);
+        .rangeRoundBands([0, width], .25);
 
     var y = d3.scale.linear()
-        .domain([0, yStackMax])
+        .domain([0, yStackMax * 1.05])
         .range([height, 0]);
-
-    // var color = d3.scale.linear()
-    //     .domain([0, numLayers - 1])
-    //     .range(["#aad", "#556", 'green']);
 
      var color = d3.scale.category10();
 
@@ -47,6 +45,10 @@ var app;
         .scale(x)
         .outerTickSize(0)
         .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left");
 
     //Created SVG, set width/height
     var svg = d3.select('.firstGraph')
@@ -81,9 +83,33 @@ var app;
     .call(xAxis)
     .selectAll("text")
       .attr("x", 5)
-      .attr("dy", "-.35em")
+      .attr("dy", "-.4em")
       .attr("transform", "rotate(90)")
       .style("text-anchor", "start");
+
+    svg.append("g")
+    .attr("class", "y axis")
+    //.attr("transform", "translate(" + width + ",0)")
+    .call(yAxis)
+    .selectAll("text")
+      //.attr("x", 5)
+      .attr("dx", "-2.1em")
+      .style("text-anchor", "start");
+
+  svg.append("text")
+    .attr("x", width/2 )
+    .attr("y", height + margin.bottom )
+    .attr('dy','-.5em')
+    .style("text-anchor", "middle")
+    .text("Date");
+
+  svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x", 0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Rent Prices");
 
   };
 
