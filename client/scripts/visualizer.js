@@ -9,12 +9,14 @@ var v = {
 
       //v.visualize = callback;
 
+      console.log('start loading song', source);
       var audio = new Audio();
       //audio.src = 'Beethoven-Fur_Elise.mp3';
       audio.src = source;
       audio.controls = true;
       audio.loop = true;
       audio.autoplay = true;
+      console.log('end loading song', source);
 
       v.ctx.createMediaElementSource(audio).connect(v.analyser);
       v.analyser.connect(v.ctx.destination);
@@ -23,7 +25,7 @@ var v = {
 
     data: {},
 
-    fCount: 1024, // fCount / 2 -> Number of indexes in graph
+    fCount: 2048, // fCount / 2 -> Number of indexes in graph
     maxLevel: 256,
 
     getFData: function(){

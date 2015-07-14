@@ -11,7 +11,15 @@ function visualBars(totalWidth, totalHeight, margins) {
        .domain([0, v.maxLevel+1])
        .range([this.height, 0]);
 
-  this.color = d3.scale.category20b();
+  //this.color = d3.scale.category20b();
+
+  this.rainbow = new Rainbow();
+  this.rainbow.setSpectrum('#3399FF', '#339966', '#FF99FF');
+  this.rainbow.setNumberRange(0, 256);
+
+  // this.color = d3.scale.linear()
+  //     .domain([0, v.fCount/2])
+  //     .range([0x342E4D, 0xEAEFBD]);
 
   this.svg = d3.select('.v');
 }
@@ -35,8 +43,8 @@ var vBMethods = {
 
       rect.enter().append("rect")
         .attr("x", function(d, i) { return i*5; })
-        .attr("width", "5")
-        .style("fill", function(d, i) { return self.color(i); })
+        .attr("width", "3")
+        .style("fill", function(d, i) { return '#' + self.rainbow.colourAt(i); })
 
       rect.attr("height", function(d){ return self.height - self.y(d); })
           .attr("y", function(d){ return self.y(d); })
