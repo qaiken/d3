@@ -3,7 +3,7 @@ var app;
 (function() {
 
   var margin, width, height;
-  var numLayers = 3;
+  var numLayers = ourData.length;
   var numSamples = 70;
   var stack = d3.layout.stack();
 
@@ -70,8 +70,8 @@ var app;
                 .attr("height", 0);
 
         rect.transition()
-            .delay(function(d, i) { return i * 10; })
-            .attr("y", function(d) { return y(d.y0 + d.y); })
+            .delay(function(d, i) { return ((d.y0/yStackMax) + (i/numSamples)) * 2000; })
+            .attr("y", function(d) { return y(0 + d.y); })
             .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
 
     //Draw x-axis on the SVG

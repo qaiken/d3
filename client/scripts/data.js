@@ -76,9 +76,13 @@ var ourData = _.reduce(rawData.split(':'), function(memo, item){
   //var date = new Date(datea[1] + '-' + datea[0]);
   var date = itema[0];
 
-  memo[0].push({ x: date, y: +itema[2]});
-  memo[1].push({ x: date, y: +itema[1]});
-  memo[2].push({ x: date, y: +itema[3]});
+  // memo[0].push({ x: date, y: +itema[2]});
+  // memo[1].push({ x: date, y: +itema[1]});
+  // memo[2].push({ x: date, y: +itema[3]});
+
+  memo[1].push({ x: date, y: +itema[2]});
+  //memo[1].push({ x: date, y: +itema[1]});
+  memo[0].push({ x: date, y: +itema[3]});
 
   return memo;
-}, [[],[],[]]);
+}, [[],[]]);
