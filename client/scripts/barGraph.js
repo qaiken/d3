@@ -72,9 +72,11 @@ var app;
                 .attr("height", 0);
 
         rect.transition()
+            .duration(2500)
+            .ease('bounce')
             .delay(function(d, i) { return ((d.y0/yStackMax) + (i/numSamples)) * 2000; })
-            .attr("y", function(d) { return y(0 + d.y); })
-            .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
+            .attr("y", function(d) { return y(d.y); })
+            .attr("height", function(d) { return y(d.y0) - y(d.y); });
 
     //Draw x-axis on the SVG
     svg.append("g")
