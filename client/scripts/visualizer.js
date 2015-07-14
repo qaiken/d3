@@ -7,11 +7,8 @@ var v = {
 
       v.analyser.fftSize = v.fCount;
 
-      //v.visualize = callback;
-
       console.log('start loading song', source);
       var audio = new Audio();
-      //audio.src = 'Beethoven-Fur_Elise.mp3';
       audio.src = source;
       audio.controls = true;
       audio.loop = true;
@@ -36,14 +33,8 @@ var v = {
 
     play: function(visualize){
       var data = v.getFData();
-
       //console.log(data);
-
-      //console.log('calling visualize');
       visualize(data);
-
-      //Shove it into D3 and do a D3 update.
-
       window.requestAnimationFrame(v.play.bind(this,visualize));
     }
   };

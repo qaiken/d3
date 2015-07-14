@@ -9,17 +9,20 @@ function visualBars(totalWidth, totalHeight, margins) {
 
   this.y = d3.scale.linear()
        .domain([0, v.maxLevel+1])
-       .range([this.height, 0]);
+       .range([this.height, 0])
+       .nice();
 
   //this.color = d3.scale.category20b();
 
-  this.rainbow = new Rainbow();
-  this.rainbow.setSpectrum('#3399FF', '#339966', '#FF99FF');
-  this.rainbow.setNumberRange(0, 256);
+  // this.rainbow = new Rainbow();
+  // this.rainbow.setSpectrum('#3399FF', '#339966', '#FF99FF');
+  // this.rainbow.setNumberRange(0, 256);
 
-  // this.color = d3.scale.linear()
-  //     .domain([0, v.fCount/2])
-  //     .range([0x342E4D, 0xEAEFBD]);
+  this.color = d3.scale.linear()
+      .domain([0, v.fCount/2*0.33, v.fCount/2*0.66, v.fCount/2])
+      .range(["#FCBF3A", "#FF218D", '#30AAFF', '#DDFF45']);
+
+  this.barWidth = this.width / (v.fCount/2);
 
   this.svg = d3.select('.v');
 }
@@ -29,8 +32,7 @@ var vBMethods = {
     this.svg = this.svg
       .attr("width", this.width + this.margins.left + this.margins.right)
       .attr("height", this.height + this.margins.top + this.margins.bottom)
-      .append("g")
-        //.attr("transform", "translate(" + this.margins.left + "," + this.margins.top + ")");
+      .append("g");
 
     return this;
   },
@@ -43,19 +45,12 @@ var vBMethods = {
 
       rect.enter().append("rect")
         .attr("x", function(d, i) { return i*5; })
-        .attr("width", "3")
-        .style("fill", function(d, i) { return '#' + self.rainbow.colourAt(i); })
+        .attr("width", self.barWidth * 1.25)
+        //.style("fill", function(d, i) { return '#' + self.rainbow.colourAt(i); })
+        .style("fill", function(d, i) { return self.color(i); })
 
       rect.attr("height", function(d){ return self.height - self.y(d); })
           .attr("y", function(d){ return self.y(d); })
-
-
-
-     // .transition()
-     //   //.duration(2500)
-     //   //.ease('bounce')
-     //   //.delay(function(d, i) { return ((d.y0/yStackMax) + (i/numSamples)) * 2000; })
-     //   .attr("height", function(d){ return self.y(d); })
   },
 };
 
