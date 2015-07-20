@@ -4,19 +4,13 @@ function visualBars(totalWidth, totalHeight, margins) {
   this.margins = margins;
 
   this.x = d3.scale.ordinal()
-       .domain([0,(v.fCount/2)])
-       .rangeRoundBands([0, this.width]);
+       .domain(d3.range(0,v.fCount/2,1))
+       .rangeBands([0, this.width],0.5);
 
   this.y = d3.scale.linear()
        .domain([0, v.maxLevel+1])
        .range([this.height, 0])
        .nice();
-
-  //this.color = d3.scale.category20b();
-
-  // this.rainbow = new Rainbow();
-  // this.rainbow.setSpectrum('#3399FF', '#339966', '#FF99FF');
-  // this.rainbow.setNumberRange(0, 256);
 
   this.color = d3.scale.linear()
       .domain([0, v.fCount/2*0.33, v.fCount/2*0.66, v.fCount/2])
@@ -44,9 +38,8 @@ var vBMethods = {
       .data(data);
 
       rect.enter().append("rect")
-        .attr("x", function(d, i) { return i*5; })
-        .attr("width", self.barWidth * 1.25)
-        //.style("fill", function(d, i) { return '#' + self.rainbow.colourAt(i); })
+        .attr("x", function(d, i) { return self.x(i); })
+        .attr("width", self.x.rangeBand() )
         .style("fill", function(d, i) { return self.color(i); })
 
       rect.attr("height", function(d){ return self.height - self.y(d); })
