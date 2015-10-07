@@ -1,0 +1,23 @@
+{
+  "name": "mks20-d3",
+  "version": "1.0.0",
+  "description": "This is a project from the [Hack Reactor](http://hackreactor.com) curriculum that I completed as a student at [Makersquare](http://makersquare.com). This was worked on in a pair programming setting.",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "^0.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "http-server client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qaiken/d3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qaiken/d3/issues"
+  },
+  "homepage": "https://github.com/qaiken/d3#readme"
+}
